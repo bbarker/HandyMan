@@ -27,7 +27,16 @@ www-test/
 #old GWT (1.5) created this dir
 .gwt-tmp/
 
+#builds:
+.gradle
+build
+#not tracking for now anyway
+web/js/*
+
+
 #Idea user-config files:
 .idea/workspace.xml
+.idea/gradle.xml
+.idea/libraries/Gradle*
 .idea/tasks.xml
 *.iml
