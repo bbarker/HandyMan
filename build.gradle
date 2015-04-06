@@ -1,3 +1,5 @@
+defaultTasks 'build'
+
 buildscript {
     ext.kotlin_version = '0.11.91.1'
     repositories {
@@ -42,6 +44,7 @@ task copyJsFilesFromDependencies(dependsOn: build) {
             includeEmptyDirs = false
 
             from zipTree(file.absolutePath)
+            // TODO: why is this run when we use the build task as well?
             into "${projectDir}/web/js/lib"
             include { fileTreeElement ->
                 def path = fileTreeElement.path
@@ -49,4 +52,12 @@ task copyJsFilesFromDependencies(dependsOn: build) {
             }
         }
     }
+}
+
+clean {
+    // Remove Kotlin-generated javascript
+    delete "web/js/lib/kotlin.js"
+    delete "web/js/lib/stdlib.meta.js"
+    delete "web/js/app.js"
+    delete "web/js/app.js.map"
 }
